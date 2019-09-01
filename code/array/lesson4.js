@@ -1,6 +1,8 @@
 // leetcode 89 格雷编码
 
 export default (n) => {
+  // 如果n = 0
+  if (n === 0) return [0]
   // 递归函数，用来算输入为n的格雷编码序列
   let make = (n) => {
     if (n === 1) {
@@ -13,11 +15,12 @@ export default (n) => {
         result[i] = `0${prev[i]}`
         result[max - i] = `1${prev[i]}`
       }
-      result.forEach((item, index) => {
-        result[index] = parseInt(item, 2)
-      })
       return result
     }
   }
-  return make(n)
+  return (
+    make(n).map((val) => {
+      return parseInt(val, 2)
+    })
+  )
 }
